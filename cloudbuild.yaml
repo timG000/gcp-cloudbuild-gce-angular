@@ -6,6 +6,11 @@ steps:
 # - name: gcr.io/cloud-builders/gcloud
 #   args: [ compute, instance-groups, managed, rolling-action, restart, gce-angular-instance-group, --zone=us-east1-b ]
 
+# - name: gcr.io/cloud-builders/gcloud
+  # args: [ compute, instances, stop, emc-ema-mockrobot-d ]
+
+- name: gcr.io/cloud-builders/gcloud
+  args: [ compute, instances, start, emc-ema-mockrobot-d ]
 
 images:
 

@@ -7,10 +7,10 @@ steps:
 #   args: [ compute, instance-groups, managed, rolling-action, restart, gce-angular-instance-group, --zone=us-central1-a  ]
 
 # - name: gcr.io/cloud-builders/gcloud
-  # args: [ compute, instances, stop, emc-ema-mockrobot-d, --zone=us-central1-a ]
+  # args: [ compute, instances, stop, emc-ema-mockrobot-d-test, --zone=us-central1-a ]
 
 - name: gcr.io/cloud-builders/gcloud
-  args: [ compute, instances, start, emc-ema-mockrobot-d, --zone=us-central1-a ]
+  args: [ compute, instances, start, emc-ema-mockrobot-d-test, --zone=us-central1-a ]
 
 images:
 

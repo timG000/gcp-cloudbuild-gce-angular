@@ -13,10 +13,10 @@ steps:
   # args: [ compute, instances, start, emc-ema-mockrobot-d-test, --zone=us-central1-a ]
 
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-  entrypoint: "/bin/sh"
+  entrypoint: gcloud
   args:
-    - "-c"
-    - "gcloud compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
+    # - "-c"
+    - "compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
   # entrypoint: "/bin/sh"
   
   

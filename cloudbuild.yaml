@@ -1,7 +1,7 @@
 steps:
 
-# - name: gcr.io/cloud-builders/docker
-  # args: [ build, -t, gcr.io/emc-ema-mockrobot-d/gcp-cloudbuild-gce-angular, . ]
+- name: gcr.io/cloud-builders/docker
+  args: [ build, -t, gcr.io/emc-ema-mockrobot-d/gcp-cloudbuild-gce-angular, . ]
 
 - name: gcr.io/cloud-builders/gcloud
   args: [ compute, ssh, emc-ema-mockrobot-d, --zone, us-central1-a, --command, "sudo docker pull gcr.io/emc-ema-mockrobot-d/gcp-cloudbuild-gce-angular"]

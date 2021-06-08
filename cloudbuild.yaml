@@ -12,14 +12,26 @@ steps:
 # - name: gcr.io/cloud-builders/gcloud
   # args: [ compute, instances, start, emc-ema-mockrobot-d-test, --zone=us-central1-a ]
 
-- name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-  entrypoint: gcloud
-  args:
+# - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+  # entrypoint: gcloud
+  # args:
     # - "-c"
-    - "compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
+    # - "compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
   # entrypoint: "/bin/sh"
-  
-  
-images:
 
-- gcr.io/emc-ema-mockrobot-d/gcp-cloudbuild-gce-angular
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash' 
+  args:
+  - '-eEuo'
+  - 'pipefail'
+  - '-c'
+  - |-
+    if (( $(date '+%-e') % 2 )); then
+      echo "today is an odd day"
+    else
+      echo "today is an odd day, with an even number"
+    fi
+  
+# images:
+
+# - gcr.io/emc-ema-mockrobot-d/gcp-cloudbuild-gce-angular

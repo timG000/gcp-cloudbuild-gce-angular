@@ -20,7 +20,7 @@ steps:
   # entrypoint: "/bin/sh"
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash' 
+  entrypoint: 'gcloud' 
   args:
   - "gcloud compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
   

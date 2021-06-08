@@ -19,10 +19,16 @@ steps:
     # - "compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
   # entrypoint: "/bin/sh"
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'gcloud' 
-  args:
-  - "gcloud compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
+- name: 'gcr.io/emc-ema-mockrobot-d/remote-builder'
+  waitFor: ["-"]
+  env:
+    # Use Container Optimized OS
+    # https://cloud.google.com/container-optimized-os/docs/
+    # - INSTANCE_ARGS=--image-project cos-cloud --image-family cos-stable
+    - ZONE=us-central1-a
+    # - USERNAME=cloud-user
+    # Run a script from the local build context in a Docker container
+    - COMMAND=ls
   
 # images:
 

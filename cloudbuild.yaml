@@ -3,6 +3,9 @@ steps:
 # - name: gcr.io/cloud-builders/docker
   # args: [ build, -t, gcr.io/emc-ema-mockrobot-d/gcp-cloudbuild-gce-angular, . ]
 
+- name: gcr.io/cloud-builders/gcloud
+  args: [ compute, ssh, emc-ema-mockrobot-d, --zone, us-central1-a,  --tunnel-through-iap, --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n ]
+
 # - name: gcr.io/cloud-builders/gcloud
 #   args: [ compute, instance-groups, managed, rolling-action, restart, gce-angular-instance-group, --zone=us-central1-a  ]
 
@@ -19,16 +22,16 @@ steps:
     # - "compute ssh emc-ema-mockrobot-d --zone us-central1-a  --tunnel-through-iap --command=\"touch ~/wf_$(date +\"\"%Y_%m_%d_%H_%M_%S\"\").log\n"
   # entrypoint: "/bin/sh"
 
-- name: 'gcr.io/emc-ema-mockrobot-d/remote-builder'
-  waitFor: ["-"]
-  env:
+# - name: 'gcr.io/emc-ema-mockrobot-d/remote-builder'
+  # waitFor: ["-"]
+  # env:
     # Use Container Optimized OS
     # https://cloud.google.com/container-optimized-os/docs/
     # - INSTANCE_ARGS=--image-project cos-cloud --image-family cos-stable
-    - ZONE=us-central1-a
+    # - ZONE=us-central1-a
     # - USERNAME=cloud-user
     # Run a script from the local build context in a Docker container
-    - COMMAND=ls
+    # - COMMAND=ls
   
 # images:
 
